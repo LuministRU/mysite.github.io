@@ -73,109 +73,15 @@
     0 8px 0 0 #000;
 }
 
-/* Character Animations - Retro Sega Style */
-
-/* IDLE: Natural breathing + occasional look around */
-@keyframes characterIdle {
-  /* Normal breathing */
-  0%, 100% { transform: scale(1, 1) translateY(0) rotate(0deg); }
-  25% { transform: scale(1.01, 0.99) translateY(0) rotate(0deg); }
-  50% { transform: scale(0.99, 1.01) translateY(-1px) rotate(0deg); }
-  75% { transform: scale(1.01, 0.99) translateY(0) rotate(0deg); }
-  
-  /* Look left at 20% */
-  18%, 22% { transform: scale(1, 1) translateY(0) rotate(-2deg); }
-  
-  /* Look right at 60% */
-  58%, 62% { transform: scale(1, 1) translateY(0) rotate(2deg); }
-}
-
-/* HAT: Adjust hat - hand goes up and fixes it */
-@keyframes characterHat {
-  0%, 100% { transform: scale(1, 1) translateY(0) rotate(0deg); }
-  
-  /* Prepare */
-  10% { transform: scale(1, 1) translateY(-2px) rotate(-1deg); }
-  
-  /* Hand goes up */
-  20% { transform: scale(0.98, 1.02) translateY(-4px) rotate(-3deg); }
-  
-  /* Fix hat - quick movement */
-  30% { transform: scale(1.01, 0.99) translateY(-3px) rotate(1deg); }
-  40% { transform: scale(0.99, 1.01) translateY(-5px) rotate(-2deg); }
-  50% { transform: scale(1, 1) translateY(-4px) rotate(0deg); }
-  
-  /* Hand goes down */
-  70% { transform: scale(1, 1) translateY(-1px) rotate(0deg); }
-  85% { transform: scale(1, 1) translateY(0) rotate(0deg); }
-}
-
-/* DUST: Shake off dust - quick shiver */
-@keyframes characterDust {
-  0%, 100% { transform: scale(1, 1) translateY(0) rotate(0deg); }
-  
-  /* Start shivering */
-  5% { transform: scale(1, 1) translateY(-1px) rotate(-1deg); }
-  10% { transform: scale(1, 1) translateY(0) rotate(1deg); }
-  15% { transform: scale(1, 1) translateY(-2px) rotate(-1deg); }
-  20% { transform: scale(1, 1) translateY(0) rotate(1deg); }
-  25% { transform: scale(1, 1) translateY(-1px) rotate(-1deg); }
-  30% { transform: scale(1, 1) translateY(0) rotate(1deg); }
-  35% { transform: scale(1, 1) translateY(-2px) rotate(0deg); }
-  
-  /* Big shake */
-  40% { transform: scale(1.02, 0.98) translateY(-3px) rotate(-2deg); }
-  45% { transform: scale(0.98, 1.02) translateY(-1px) rotate(2deg); }
-  50% { transform: scale(1, 1) translateY(-2px) rotate(-1deg); }
-  55% { transform: scale(1, 1) translateY(0) rotate(1deg); }
-  
-  /* Settle down */
-  70% { transform: scale(1, 1) translateY(0) rotate(0deg); }
-  85% { transform: scale(1, 1) translateY(0) rotate(0deg); }
-}
-
-/* Dust particles animation */
-@keyframes dustParticle {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scale(0);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(-10px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.5);
-  }
-}
-
-/* Glow pulse for character */
+/* Glow pulse for character - subtle breathing effect */
 @keyframes glowPulse {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.6)); }
-  50% { filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.9)); }
+  0%, 100% { filter: drop-shadow(0 0 15px rgba(34, 197, 94, 0.5)); }
+  50% { filter: drop-shadow(0 0 25px rgba(34, 197, 94, 0.8)); }
 }
 
-/* Animation classes */
-.character-idle {
-  animation: characterIdle 8s steps(60) infinite;
-}
-
-.character-hat {
-  animation: characterHat 3s steps(40) ease-in-out;
-}
-
-.character-dust {
-  animation: characterDust 2s steps(30) ease-in-out;
-}
-
+/* Static glow for character image */
 .character-glow {
-  animation: glowPulse 2s ease-in-out infinite;
-}
-
-/* Dust particles */
-.dust-particle {
-  animation: dustParticle 1s ease-out forwards;
+  animation: glowPulse 3s ease-in-out infinite;
 }
 
 /* Star Animations */

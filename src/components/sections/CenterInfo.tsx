@@ -13,34 +13,41 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    name: "Velvet Svoboda",
+    description: "Сайт пансионата для пожилых людей",
+    tech: ["React", "TypeScript", "Tailwind"],
+    link: "http://velvetsvoboda.ru/"
+  },
+  {
+    id: 2,
     name: "Space Monitoring System",
     description: "Система мониторинга спутниковых данных",
     tech: ["Python", "FastAPI", "PostgreSQL"],
     link: "#"
   },
   {
-    id: 2,
+    id: 3,
     name: "Orbit Calculator",
     description: "Расчёт орбитальных траекторий",
     tech: ["Python", "NumPy", "Matplotlib"],
     link: "#"
   },
   {
-    id: 3,
+    id: 4,
     name: "Telemetry Dashboard",
     description: "Визуализация телеметрии в реальном времени",
     tech: ["React", "TypeScript", "WebSocket"],
     link: "#"
   },
   {
-    id: 4,
+    id: 5,
     name: "Data Pipeline",
     description: "Обработка больших объёмов данных",
     tech: ["Python", "Apache Kafka", "Redis"],
     link: "#"
   },
   {
-    id: 5,
+    id: 6,
     name: "API Gateway",
     description: "Централизованный API шлюз",
     tech: ["Python", "FastAPI", "Docker"],

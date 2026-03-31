@@ -7,7 +7,7 @@ function App() {
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
       {/* Main container with pixel border */}
       <div 
-        className="relative w-full max-w-7xl aspect-[16/9] min-h-[600px] bg-black"
+        className="relative w-full max-w-[90vw] min-h-[85vh] bg-black"
         style={{
           boxShadow: `
             0 0 0 4px #000,
@@ -61,7 +61,7 @@ function App() {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-[7px] text-pixel-gold">
-              5+ PROJECTS
+              6+ PROJECTS
             </span>
             <span className="text-[7px] text-pixel-blue">
               5+ YEARS
