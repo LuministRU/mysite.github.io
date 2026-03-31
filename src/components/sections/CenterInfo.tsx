@@ -1,59 +1,24 @@
 import { useState } from 'react';
-import { Phone, Mail, Code, Terminal, Database, Server, Cpu, Globe, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Phone, Mail, Code, Terminal, Database, Server, Cpu, Globe, ExternalLink } from 'lucide-react';
 
 interface Project {
   id: number;
   name: string;
   description: string;
   tech: string[];
-  link?: string;
+  link: string;
+  preview: string;
 }
 
-// Projects data - easy to add more
-const projects: Project[] = [
-  {
-    id: 1,
-    name: "Velvet Svoboda",
-    description: "Сайт пансионата для пожилых людей",
-    tech: ["React", "TypeScript", "Tailwind"],
-    link: "http://velvetsvoboda.ru/"
-  },
-  {
-    id: 2,
-    name: "Space Monitoring System",
-    description: "Система мониторинга спутниковых данных",
-    tech: ["Python", "FastAPI", "PostgreSQL"],
-    link: "#"
-  },
-  {
-    id: 3,
-    name: "Orbit Calculator",
-    description: "Расчёт орбитальных траекторий",
-    tech: ["Python", "NumPy", "Matplotlib"],
-    link: "#"
-  },
-  {
-    id: 4,
-    name: "Telemetry Dashboard",
-    description: "Визуализация телеметрии в реальном времени",
-    tech: ["React", "TypeScript", "WebSocket"],
-    link: "#"
-  },
-  {
-    id: 5,
-    name: "Data Pipeline",
-    description: "Обработка больших объёмов данных",
-    tech: ["Python", "Apache Kafka", "Redis"],
-    link: "#"
-  },
-  {
-    id: 6,
-    name: "API Gateway",
-    description: "Централизованный API шлюз",
-    tech: ["Python", "FastAPI", "Docker"],
-    link: "#"
-  }
-];
+// Only one real project
+const project: Project = {
+  id: 1,
+  name: "Velvet Svoboda",
+  description: "Танцевально-спортивный клуб VELVET. Сайт с записью на занятия, расписанием, информацией о тренерах и достижениях.",
+  tech: ["React", "TypeScript", "Tailwind"],
+  link: "http://velvetsvoboda.ru/",
+  preview: "https://api.microlink.io/?url=http://velvetsvoboda.ru/&screenshot=true&embed=screenshot.url"
+};
 
 // Tech stack
 const techStack = [
@@ -66,16 +31,7 @@ const techStack = [
 ];
 
 const CenterInfo = () => {
-  const [currentProject, setCurrentProject] = useState(0);
-  const [showProjects, setShowProjects] = useState(false);
-
-  const nextProject = () => {
-    setCurrentProject((prev) => (prev + 1) % projects.length);
-  };
-
-  const prevProject = () => {
-    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
-  };
+  const [showProject, setShowProject] = useState(false);
 
   return (
     <div className="relative h-full w-full bg-black/90 flex flex-col">
@@ -139,27 +95,53 @@ const CenterInfo = () => {
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-pixel-gold text-[10px] font-pixel flex items-center gap-2">
               <Code className="w-3 h-3" />
-              ПРОЕКТЫ ({projects.length})
+              ПРОЕКТ
             </h3>
             <button
-              onClick={() => setShowProjects(!showProjects)}
+              onClick={() => setShowProject(!showProject)}
               className="text-[8px] text-pixel-green hover:text-white transition-colors"
             >
-              {showProjects ? 'СКРЫТЬ' : 'ПОКАЗАТЬ'}
+              {showProject ? 'СКРЫТЬ' : 'ПОКАЗАТЬ'}
             </button>
           </div>
 
-          {showProjects && (
+          {showProject && (
             <div className="bg-gray-900 border-2 border-gray-700 p-3">
+              {/* Preview Image */}
+              <a 
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mb-3 relative group"
+              >
+                <img 
+                  src={project.preview}
+                  alt={project.name}
+                  className="w-full h-24 object-cover border border-gray-600 group-hover:border-pixel-green transition-colors"
+                  style={{ imageRendering: 'auto' }}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100"><rect fill="%23111" width="200" height="100"/><text fill="%23666" x="50%" y="50%" text-anchor="middle" font-size="10">Preview</text></svg>';
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <ExternalLink className="w-6 h-6 text-white" />
+                </div>
+              </a>
+
               <div className="mb-3">
-                <h4 className="text-white text-[10px] font-pixel mb-1">
-                  {projects[currentProject].name}
-                </h4>
-                <p className="text-gray-400 text-[8px] mb-2">
-                  {projects[currentProject].description}
+                <a 
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white text-[10px] font-pixel mb-1 hover:text-pixel-green transition-colors block"
+                >
+                  {project.name}
+                </a>
+                <p className="text-gray-400 text-[8px] mb-2 leading-relaxed">
+                  {project.description}
                 </p>
                 <div className="flex flex-wrap gap-1">
-                  {projects[currentProject].tech.map((t) => (
+                  {project.tech.map((t) => (
                     <span 
                       key={t}
                       className="text-[7px] bg-pixel-darkgreen text-pixel-green px-1 py-0.5"
@@ -170,36 +152,27 @@ const CenterInfo = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <button
-                  onClick={prevProject}
-                  className="p-1 hover:bg-gray-800 transition-colors"
-                >
-                  <ChevronLeft className="w-4 h-4 text-pixel-green" />
-                </button>
-                <span className="text-[8px] text-gray-500">
-                  {currentProject + 1} / {projects.length}
-                </span>
-                <button
-                  onClick={nextProject}
-                  className="p-1 hover:bg-gray-800 transition-colors"
-                >
-                  <ChevronRight className="w-4 h-4 text-pixel-green" />
-                </button>
-              </div>
+              <a 
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center bg-pixel-darkgreen border border-pixel-green text-pixel-green text-[8px] py-2 hover:bg-pixel-green hover:text-black transition-colors font-pixel"
+              >
+                ПЕРЕЙТИ НА САЙТ →
+              </a>
             </div>
           )}
 
-          {!showProjects && (
+          {!showProject && (
             <div 
               className="bg-gray-900 border-2 border-dashed border-gray-700 p-4 text-center cursor-pointer hover:border-pixel-green transition-colors"
-              onClick={() => setShowProjects(true)}
+              onClick={() => setShowProject(true)}
             >
               <p className="text-gray-500 text-[10px] font-pixel">
                 НАЖМИТЕ ДЛЯ ПРОСМОТРА
               </p>
               <p className="text-gray-600 text-[8px] mt-1">
-                {projects.length} ПРОЕКТОВ
+                1 ПРОЕКТ
               </p>
             </div>
           )}
@@ -232,7 +205,7 @@ const CenterInfo = () => {
         {/* Footer */}
         <div className="mt-auto pt-4 text-center">
           <p className="text-[7px] text-gray-600 font-pixel">
-            &copy; 2024 ВАСИЛЬЕВ СТАНИСЛАВ
+            &copy; 2025 ВАСИЛЬЕВ СТАНИСЛАВ
           </p>
           <p className="text-[6px] text-gray-700 mt-1">
             PYTHON DEVELOPER | ROSCOSMOS

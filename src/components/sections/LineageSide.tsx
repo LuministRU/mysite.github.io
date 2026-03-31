@@ -60,7 +60,7 @@ const LineageSide = () => {
             <img
               src="./images/character.png"
               alt="Lineage 2 Character"
-              className="w-64 h-auto object-contain character-glow drop-shadow-2xl"
+              className="w-80 h-auto object-contain character-glow drop-shadow-2xl"
               style={{
                 imageRendering: 'pixelated',
                 filter: 'drop-shadow(0 0 20px rgba(34, 197, 94, 0.6))',
@@ -100,10 +100,10 @@ const LineageSide = () => {
         <div className="text-center">
           <div className="bg-black/50 border-2 border-pixel-green px-4 py-2">
             <p className="text-pixel-green text-[10px] font-pixel">
-              CLASS: ARCHMAGE
+              CLASS: TIR DOOMBRINGER
             </p>
             <p className="text-gray-400 text-[8px] mt-1">
-              CLAN: SPACE_EXPLORERS
+              CLAN: @TANKSHELTER
             </p>
           </div>
         </div>

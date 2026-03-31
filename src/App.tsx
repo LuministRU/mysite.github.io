@@ -61,7 +61,7 @@ function App() {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-[7px] text-pixel-gold">
-              6+ PROJECTS
+              1 PROJECT
             </span>
             <span className="text-[7px] text-pixel-blue">
               5+ YEARS
