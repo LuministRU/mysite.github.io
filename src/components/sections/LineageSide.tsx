@@ -90,7 +90,7 @@ const LineageSide = () => {
             className={`relative character-look ${getAnimationClass()}`}
           >
             <img
-              src="/images/character.png"
+              src="./images/character.png"
               alt="Lineage 2 Character"
               className="w-64 h-auto object-contain character-glow drop-shadow-2xl"
               style={{

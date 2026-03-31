@@ -114,14 +114,14 @@ const CenterInfo = () => {
             <Terminal className="w-3 h-3" />
             TECH STACK
           </h3>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-1">
             {techStack.map((tech) => (
               <div 
                 key={tech.name}
-                className="bg-gray-900 border border-gray-700 p-2 flex flex-col items-center gap-1 hover:border-pixel-green transition-colors"
+                className="bg-gray-900 border border-gray-700 p-1.5 flex flex-col items-center gap-1 hover:border-pixel-green transition-colors min-w-0"
               >
-                <tech.icon className={`w-4 h-4 ${tech.color}`} />
-                <span className="text-[8px] text-gray-300 font-pixel">{tech.name}</span>
+                <tech.icon className={`w-3 h-3 ${tech.color}`} />
+                <span className="text-[6px] text-gray-300 font-pixel text-center truncate w-full">{tech.name}</span>
               </div>
             ))}
           </div>

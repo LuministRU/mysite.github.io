@@ -52,22 +52,19 @@ function App() {
           </span>
         </div>
 
-        {/* Bottom status bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gray-900 border-t-2 border-gray-700 px-4 py-2 z-30 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="text-[8px] text-pixel-green font-pixel">
+        {/* Bottom status bar - compact */}
+        <div className="absolute bottom-0 left-0 right-0 bg-black/80 border-t border-gray-800 px-3 py-1 z-30 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-[7px] text-pixel-green font-pixel flex items-center gap-1">
               <span className="animate-pulse">●</span> ONLINE
             </span>
-            <span className="text-[8px] text-gray-500">
-              PYTHON 3.11
-            </span>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-[8px] text-pixel-gold">
+          <div className="flex items-center gap-3">
+            <span className="text-[7px] text-pixel-gold">
               5+ PROJECTS
             </span>
-            <span className="text-[8px] text-pixel-blue">
-              5+ YEARS XP
+            <span className="text-[7px] text-pixel-blue">
+              5+ YEARS
             </span>
           </div>
         </div>
