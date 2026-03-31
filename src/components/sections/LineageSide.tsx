@@ -5,19 +5,39 @@ const LineageSide = () => {
   const [animationState, setAnimationState] = useState<'idle' | 'hat' | 'dust'>('idle');
 
   useEffect(() => {
-    // Cycle through animations
-    const interval = setInterval(() => {
+    // Random animation cycle - more natural timing
+    const runAnimation = () => {
       const rand = Math.random();
-      if (rand < 0.3) {
+      if (rand < 0.25) {
+        // Adjust hat (3s animation)
         setAnimationState('hat');
-        setTimeout(() => setAnimationState('idle'), 2000);
-      } else if (rand < 0.6) {
+        setTimeout(() => setAnimationState('idle'), 3000);
+      } else if (rand < 0.5) {
+        // Dust off (2s animation)
         setAnimationState('dust');
         setTimeout(() => setAnimationState('idle'), 2000);
       }
-    }, 5000);
+      // else stay idle
+    };
 
-    return () => clearInterval(interval);
+    // Initial delay
+    const initialDelay = setTimeout(runAnimation, 2000);
+    
+    // Random intervals between 4-8 seconds
+    const scheduleNext = () => {
+      const delay = 4000 + Math.random() * 4000;
+      return setTimeout(() => {
+        runAnimation();
+        timeoutId = scheduleNext();
+      }, delay);
+    };
+    
+    let timeoutId = scheduleNext();
+
+    return () => {
+      clearTimeout(initialDelay);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const getAnimationClass = () => {
@@ -27,7 +47,7 @@ const LineageSide = () => {
       case 'dust':
         return 'character-dust';
       default:
-        return 'character-breathe';
+        return 'character-idle';
     }
   };
 
@@ -87,7 +107,7 @@ const LineageSide = () => {
           
           {/* Character Image with animations */}
           <div 
-            className={`relative character-look ${getAnimationClass()}`}
+            className={`relative ${getAnimationClass()}`}
           >
             <img
               src="./images/character.png"
@@ -103,6 +123,23 @@ const LineageSide = () => {
             <div className="absolute -top-4 -right-4 bg-pixel-darkgold border-2 border-pixel-gold px-2 py-1">
               <span className="text-pixel-gold text-[10px] font-pixel">LVL 99</span>
             </div>
+            
+            {/* Dust particles - visible only during dust animation */}
+            {animationState === 'dust' && (
+              <>
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-1 h-1 bg-pixel-gold/60 rounded-none dust-particle"
+                    style={{
+                      left: `${20 + Math.random() * 60}%`,
+                      top: `${20 + Math.random() * 40}%`,
+                      animationDelay: `${i * 0.1}s`,
+                    }}
+                  />
+                ))}
+              </>
+            )}
           </div>
 
           {/* Stats floating around */}
